@@ -37,8 +37,14 @@ export const getPositionById = async (req, res) => {
 // Update
 export const updatePositionById = async (req, res) => {
     try {
-        // const deletedPosition = await Position.deleteOne({ _id: req.params.positionId });
-        res.json(deletedPosition);
+        const updatedPosition = await Position.updateOne(
+            { _id: req.params.positionId },
+            { $set: {
+                title: req.body.title,
+                description: req.body.description
+            }}
+        );
+        res.json(updatedPosition);
     } catch (error) {
         res.json({message: error})
     }
