@@ -1,6 +1,5 @@
 import express from "express";
 import 'dotenv/config'
-import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 import cors from "cors";
 
@@ -29,3 +28,11 @@ app.listen(PORT, () => {
 mongoose.connect(URI, () => {
     console.log("Connected to db")
 });
+
+
+// Fetch Data from FE
+// const test = () => {
+//     fetch("http://localhost:5000/positions")
+//       .then(result => result.json())
+//       .then(data => console.log(data))
+//   }
