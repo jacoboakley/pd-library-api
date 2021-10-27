@@ -2,6 +2,7 @@ import express from "express";
 import 'dotenv/config'
 import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import positionsRoutes from "./routes/positions.js";
 
@@ -9,7 +10,8 @@ const PORT = 5000;
 const URI = process.env.DB_CONNECTION;
 const app = express();
 
-// Convert req-res to json
+// Middleware
+app.use(cors());
 app.use(express.json());
 
 // Router
