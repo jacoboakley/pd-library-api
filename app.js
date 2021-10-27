@@ -5,7 +5,7 @@ import cors from "cors";
 
 import positionsRoutes from "./routes/positions.js";
 
-const LOCAL_PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const URI = process.env.DB_CONNECTION;
 const app = express();
 
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.use('/positions', positionsRoutes);
 
 // Listen
-app.listen(process.env.PORT || LOCAL_PORT, () => {
+app.listen(PORT, () => {
     console.log(`PD Library API started on PORT https://localhost:${PORT}`)
 });
 
