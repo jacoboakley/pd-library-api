@@ -12,11 +12,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static("web"));
 
 // Router
-app.get("/", (req, res) => {
-    res.send("Welcome to the PD Library API")
-});
 app.use('/positions', positionsRoutes);
 
 // Listen
