@@ -12,6 +12,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+    //Serve index.html and index.css
 app.use(express.static("web"));
 
 // Router
