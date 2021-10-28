@@ -16,7 +16,14 @@ app.use(express.json());
 app.use(express.static("web"));
 
 // Router
-app.use('/positions', positionsRoutes);
+app.get("/api", (req, res) => {
+    try {
+        res.status(200).send({ running: true})
+    } catch (error) {
+        res.status(500 ).send({running: false})
+    }
+});
+app.use('/api/positions', positionsRoutes);
 
 // Listen
 app.listen(PORT, () => {
