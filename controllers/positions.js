@@ -2,17 +2,14 @@ import express from "express";
 import Position from "../models/Position.js";
 // Create
 export const addPosition = async (req, res) => {
-    const { description, title } = req.body;
-    const position = new Position({
-        description,
-        title,
-    });
+    const position = new Position(req.body);
     
     try {
         const savedPosition = await position.save();
         res.json(savedPosition) 
     } catch (error) {
-        res.json({message: error})
+        if(error.name === "ValidationError") res.status(422).json({message: error.errors})
+        else res.json({message: error.errors})
     }
     
 };
@@ -39,10 +36,7 @@ export const updatePositionById = async (req, res) => {
     try {
         const updatedPosition = await Position.updateOne(
             { _id: req.params.positionId },
-            { $set: {
-                title: req.body.title,
-                description: req.body.description
-            }}
+            { $set: req.body}
         );
         res.json(updatedPosition);
     } catch (error) {
